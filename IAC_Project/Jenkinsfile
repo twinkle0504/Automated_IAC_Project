@@ -8,25 +8,31 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git 'https://github.com/twinkle0504/Automated_IAC_Project.git'
+        git branch: 'main', url: 'https://github.com/twinkle0504/Automated_IAC_Project.git'
       }
     }
 
     /*stage('Terraform Init') {
       steps {
-        sh 'terraform init'
+        dir('IAC_Project/terraform') {
+          sh 'terraform init'
+        }
       }
     }
 
     stage('Terraform Plan') {
       steps {
-        sh 'terraform plan'
+        dir('IAC_Project/terraform') {
+          sh 'terraform plan'
+        }
       }
     }
 
     stage('Terraform Apply') {
       steps {
-        sh 'terraform apply -auto-approve'
+        dir('IAC_Project/terraform') {
+          sh 'terraform apply -auto-approve'
+        }
       }
     }*/
   }
