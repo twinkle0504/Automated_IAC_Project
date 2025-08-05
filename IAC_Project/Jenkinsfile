@@ -54,6 +54,12 @@ pipeline {
   }
 }
 
+post {
+  always {
+    archiveArtifacts artifacts: 'IAC_Project/terraform/kics-results/*', allowEmptyArchive: true
+  }
+}
+
 
     /*stage('Commit & Push KICS Report') {
       steps {
