@@ -7,7 +7,7 @@ pipeline {
 
   stages {
 
-echo "Checks out code from git"
+// Checks out code from git
     stage('Checkout') {
       steps {
         git branch: 'main', url: 'https://github.com/twinkle0504/Automated_IAC_Project.git'
