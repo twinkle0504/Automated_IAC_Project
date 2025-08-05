@@ -38,22 +38,22 @@ pipeline {
       }
     }*/
 
-    
-	stage('KICS Scan') {
-      		steps {
-        		dir('IAC_Project/terraform') {
-          			sh '''
-            			mkdir -p kics-results
 
-            			docker run --rm -v $(pwd):/path checkmarx/kics:latest \
-              			scan -p /path \
-              			--no-progress \
-              			--report-formats html,json \
-              			--output-path /path/kics-results
-          			'''
-        			}
-     	 }	
+    stage('KICS Scan') {
+  steps {
+    dir('IAC_Project/terraform') {
+      sh '''
+        mkdir -p kics-results
+        docker run --rm \
+          -v "$(pwd):/path" \
+          checkmarx/kics:latest scan -p /path --no-progress \
+          --report-formats html,json \
+          --output-path /path/kics-results
+      '''
     }
+  }
+}
+
 
     stage('Commit & Push KICS Report') {
       steps {
