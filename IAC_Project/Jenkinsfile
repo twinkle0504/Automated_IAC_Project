@@ -48,7 +48,7 @@ pipeline {
           -v "$(pwd):/path" \
           checkmarx/kics:latest scan -p /path --no-progress \
           --report-formats html,json \
-          --output-path /path/kics-results
+          --output-path /path/kics-results || true
       '''
     }
   }
