@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git 'https://github.com/your-username/terraform-aws-setup.git'
+        git 'https://github.com/twinkle0504/Automated_IAC_Project.git'
       }
     }
 
