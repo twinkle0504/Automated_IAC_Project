@@ -38,26 +38,37 @@ echo "Checks out code from git"
       }
     }*/
 
-    stage('KICS Scan and Commit') {
+    
+	stage('KICS Scan') {
+      		steps {
+        		dir('IAC_Project/terraform') {
+          			sh '''
+            			mkdir -p kics-results
+
+            			docker run --rm -v $(pwd):/path checkmarx/kics:latest \
+              			scan -p /path \
+              			--no-progress \
+              			--report-formats html,json \
+              			--output-path /path/kics-results
+          			'''
+        			}
+     	 }	
+    }
+
+    stage('Commit & Push KICS Report') {
       steps {
         dir('IAC_Project/terraform') {
           script {
             sh '''
-              mkdir -p kics-results
-
-              docker run --rm -v $(pwd):/path checkmarx/kics:latest \
-                scan -p /path \
-                --no-progress \
-                --report-formats html,json \
-                --output-path /path/kics-results
-
               git config --global user.name "twinkle0504"
               git config --global user.email "twinklehedaoo@gmail.com"
 
               git add kics-results/*
+
               git commit -m "KICS Scan Report Added [ci skip]" || echo "Nothing to commit"
             '''
           }
+
 
           withCredentials([string(credentialsId: 'github-token', variable: 'GIT_TOKEN')]) {
             sh '''
