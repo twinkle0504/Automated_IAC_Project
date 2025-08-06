@@ -48,7 +48,7 @@ API_KEY = 'f64abdc9736b9fc7ca3c8f1379a11a4671302a9b'
         docker run --rm \
           -v "$(pwd):/path" \
           checkmarx/kics:latest scan -p /path --no-progress \
-          --report-formats html,json \
+          --report-formats html,json,sarif \
           --output-path /path/kics-results || true
       '''
     }
