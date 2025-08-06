@@ -78,6 +78,30 @@ pipeline {
       }
     }*/
 
+stage('Upload KICS Report to DefectDojo') {
+  steps {
+    withCredentials([string(credentialsId: 'DEFECTDOJO_API_TOKEN', variable: 'DD_API_TOKEN')]) {
+      dir('IAC_Project/terraform/kics-results') {
+        sh '''
+          docker run --rm \
+            -e DEFECTDOJO_API_TOKEN=$DD_API_TOKEN \
+            -e DEFECTDOJO_URL=http://localhost:9000 \
+            -v $(pwd):/reports \
+            defectdojo/defectdojo-api-import:latest \
+            --file /reports/results.json \
+            --product-name "IaC Project" \
+            --engagement-name "KICS Scan" \
+            --test-type "SAST Scan" \
+            --scan-type "KICS" \
+            --api-token $DEFECTDOJO_API_TOKEN \
+            --user "admin" \
+            --url http://localhost:9000
+        '''
+      }
+    }
+  }
+}
+
 
   }
 
