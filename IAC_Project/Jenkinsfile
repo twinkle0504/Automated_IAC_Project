@@ -84,7 +84,7 @@ API_KEY = 'f64abdc9736b9fc7ca3c8f1379a11a4671302a9b'
     sh '''
       curl -X POST "http://localhost:9000/api/v2/import-scan/" \
       -H "Authorization: Token $DEFECTDOJO_API_TOKEN" \
-      -F 'file=@IAC_Project/terraform/kics-results/results.sarif' \
+      -F "file=@IAC_Project/terraform/kics-results/results.sarif" \
       -F 'scan_type=Sarif' \
       -F 'engagement=1' \
       -F 'verified=true' \
