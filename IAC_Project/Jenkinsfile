@@ -86,7 +86,7 @@ stage('Upload KICS Report to DefectDojo') {
           docker run --rm \
             -e DEFECTDOJO_API_TOKEN=$DD_API_TOKEN \
             -e DEFECTDOJO_URL=http://localhost:9000 \
-            -v $(pwd):/reports \
+            -v "$(pwd)":/reports \
             defectdojo/defectdojo-api-import:latest \
             --file /reports/results.json \
             --product-name "IaC Project" \
