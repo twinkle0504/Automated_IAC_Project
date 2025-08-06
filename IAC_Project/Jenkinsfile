@@ -82,7 +82,7 @@ API_KEY = 'f64abdc9736b9fc7ca3c8f1379a11a4671302a9b'
 stage('Upload KICS to DefectDojo') {
       steps {
         sh '''
-          curl -X POST "$DEFECTDOJO_URL/api/v2/import-scan/" \
+          curl -X POST "http://localhost:9000/api/v2/import-scan/" \
             -H "Authorization: Token $API_KEY" \
             -F 'file=@./IAC_Project/terraform/kics-results/results.json' \
             -F 'scan_type=KICS' \
