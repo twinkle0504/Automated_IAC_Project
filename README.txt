@@ -1,6 +1,6 @@
                                        🛡️ Automated IaC Security Assessment using KICS & DefectDojo
 
-This project provides a fully automated Jenkins pipeline to scan Terraform-based Infrastructure as Code (IaC) using Checkmarx KICS and upload the scan results to DefectDojo for vulnerability tracking and dashboard visualization.
+This project provides a fully automated Jenkins pipeline (with Webhooks) to scan Terraform-based Infrastructure as Code (IaC) using Checkmarx KICS and upload the scan results to DefectDojo for vulnerability tracking and dashboard visualization.
 ________________________________________
 
 ⚙️ Overview
@@ -9,6 +9,7 @@ This solution is designed for:
 •	Generating reports in HTML, JSON, and SARIF formats
 •	Uploading the SARIF report to DefectDojo via API
 •	Archiving scan results in Jenkins workspace
+• Auto Trigging the job in Jenkins via Webhooks 
 ________________________________________
 
 📁 Project Structure
